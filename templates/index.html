@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <div class="container-fluid">
+    <form action="http://localhost:5000/retrieve" method="post">
+      <div class="form-row">
+        <div class="col">
+          <label for="village">Village Code</label>
+          <input type="text" class="form-control" name="village" id='village' placeholder="--Village Code--" list="villages">
+            <datalist id='villages'>
+              <option value="BLR"></option>
+              <option value="KKM"></option>
+              <option value="BKM"></option>
+
+
+            </datalist>
+
+        </div>
+
+        <div class="col">
+          <label for="number">Number</label>
+          <input type="number" class="form-control" name="number" id='number' placeholder="--Number--">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="village">Blood sugar</label>
+        <div class="input-group">
+        <input type="number" class="form-control" name="bs1" id='bs1' placeholder="--Blood Sugar--">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">mg/L</span>
+          </div>
+        </div>
+      </div>
+      <br>
+
+        <input class="btn btn-primary " type="submit" name="sub" id='sub' value="Submit">
+
+    </form>
+    <br>
+    <button class="btn btn-success" onclick="location.href='./show.py'">Display all</button>
+  </div>
+
+
+
+
+</body>
+</html>

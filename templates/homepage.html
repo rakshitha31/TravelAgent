@@ -1,0 +1,110 @@
+{% extends "jinja.html" %}
+
+{% block body %}
+  <br>
+  <div class="panel">
+    <form action="http://localhost:5000/retrieve" method="post">
+      <div class="form-row">
+        <div class="col">
+          <h4 for="village">Village Code</h4>
+          <input type="text" class="form-control" name="village" id='village' placeholder="--Village Code--" list="villages">
+            <datalist id='villages'>
+              <option value="BLR"></option>
+              <option value="KKM"></option>
+              <option value="BKM"></option>
+
+
+            </datalist>
+
+        </div>
+
+        <div class="col">
+          <div class="gap">
+              <h4 for="number">Date Range</h4>
+            <div class="form-row">
+              <div class="col">
+              <h5 style="font-family:verdana" >From:</h5>
+              <input type="date" name="myDatestart" max="2020-01-01">
+              </div>
+              <div class="col">
+              <h5 style="font-family:verdana" >To:</h5>
+              <input type="date" name="myDateend" min="2010-01-01">
+              </div><br><br>
+              <div> <input class="btn btn-primary " type="submit" name="sub" id='sub' value="Search by Date"></div>
+              </div>
+              </div>
+        </div>
+        
+      </div>
+      <br>
+      <br>
+    </form>
+        <form action="http://localhost:5000/details" method="POST">
+
+          <div class="form-row">
+            <div class="col">
+            <h4 for="village">Enter Name</h4>
+            <input type="text" class="form-control" name="namesearch" id='namesearch' placeholder="Name" >
+            </div>
+                <div> <input class="btn btn-primary" type="submit" name="submit" id='searchbyname' value="Search by Name"></div>
+              
+          </div>
+        </form>
+
+  </div>
+
+
+   <!-- To display the details of person seareched by date range -->
+      <div class="display">
+        {% if products is not defined %}
+          <p> Nothing to display</p>
+        {% else %}
+           <table align="center">
+                <tr style="border: 2px solid #000000">
+                        <th colspan="15" style="border: 2px solid #000000">Name</th>
+                        <th colspan="15" style="border: 2px solid #000000">Age</th>
+                        <th colspan="15" style="border: 2px solid #000000">Gender</th>
+                </tr style="border: 2px solid #000000">
+          {% for id in products %}
+              
+                  <tr style="border: 2px solid #000000">
+                      <td colspan="15" style="border: 2px solid #000000">{{ id['name'] }}</td>
+                      <td  colspan="15" style="border: 2px solid #000000">{{ id['age'] }}</td>
+                      <td  colspan="15" style="border: 2px solid #000000">{{ id['gender'] }}</td>
+                  </tr style="border: 2px solid #000000">
+          {% endfor %}
+          </table>
+        {% endif %}
+      </div>
+      
+      <!-- To display the details of person seareched by name -->
+      <div class="display">
+        {% if details is not defined %}
+          <p style="display: none;"> Nothing to display</p>
+        {% else %}
+           <table align="center">
+                <tr style="border: 2px solid #000000">
+                        <th colspan="15" style="border: 2px solid #000000">Name</th>
+                        <th colspan="15" style="border: 2px solid #000000">Age</th>
+                        <th colspan="15" style="border: 2px solid #000000">Gender</th>
+                        <th colspan="15" style="border: 2px solid #000000">Fname</th>
+                </tr style="border: 2px solid #000000">
+          {% for id in details %}
+              
+                  <tr style="border: 2px solid #000000">
+                      <td colspan="15" style="border: 2px solid #000000">{{ id['name'] }}</td>
+                      <td  colspan="15" style="border: 2px solid #000000">{{ id['age'] }}</td>
+                      <td  colspan="15" style="border: 2px solid #000000">{{ id['gender'] }}</td>
+                      <td  colspan="15" style="border: 2px solid #000000">{{ id['fname'] }}</td>
+                  </tr style="border: 2px solid #000000">
+          {% endfor %}
+          </table>
+       {% endif %}
+      </div>
+ 
+      <form action="http://localhost:5000/homevisit" method="POST">
+            <Button style="position: absolute; left: 2%; right: 20%; bottom: 8%" class="fab_btn" type="submit" >+</Button>
+      </form>
+
+  {% endblock %}
+
